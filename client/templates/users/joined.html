@@ -1,0 +1,37 @@
+<template name="joined">
+    {{>userNav}}
+    <table class="table talbe-hover">
+        <thead>
+            <tr>
+                <th>标题</th>
+                <th>活动开始时间</th>
+                <th>活动地点</th>
+                <th>活动状态</th>
+                <th>查看详情</th>
+            </tr>
+        </thead>
+        <tbody>
+        {{#each activities}}
+            <tr>
+                <td>{{title}}</td>
+                <td>{{time}}</td>
+                <td>{{location}}</td>
+                <td>{{state}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{_id}}">
+                        查看详情
+                    </button>
+                    {{>activityDetail}}
+                </td>
+            </tr>
+        {{/each}}
+        {{#if nextPath}}
+            <a class="load-more" href="{{nextPath}}">查看更多</a>
+        {{else}}
+            {{#unless ready}}
+                {{> spinner}}
+            {{/unless}}
+        {{/if}}
+        </tbody>
+    </table>
+</template>
